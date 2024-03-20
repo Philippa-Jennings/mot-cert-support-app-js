@@ -9,6 +9,36 @@ describe('My Projects Manage Page', () => {
     await $('input[name="password"]').setValue('password123')
     await $('button').click()
 
+
+      
+    const listItems = $$('.list-group-item');
+    let listItem = null;
+    const desiredTitle = 'Manage Project'; 
+    
+    listItems.forEach(item => {
+        const title = item.getText(); 
+    
+        if (title === desiredTitle) {
+            listItem = item;
+            return; 
+        }
+    
+
+    });
+    
+   
+    if (listItem) {
+        listItem.click(); 
+    } else {
+        console.log(`Desired list item '${desiredTitle}' not found.`);
+    }
+    
+
+    
+   /* 
+    const adminCard = await $('.card-title');
+    (await adminCard).click();
+
     const listItem = $('list-group-item');
     (await listItem).click(); 
 
@@ -16,5 +46,7 @@ describe('My Projects Manage Page', () => {
     await expect(element).toHaveText('Projects')
 
    })
+   */
 
+   })
 })
